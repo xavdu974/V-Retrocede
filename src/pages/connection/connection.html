@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Connexion</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="bg-image">
+    <ion-list class="id-psw">
+        <ion-item class="login">
+            <ion-label stacked>Adresse mail</ion-label>
+            <ion-input type="text" [(ngModel)]="mail"></ion-input>
+        </ion-item>
+        
+        <ion-item class="login">
+            <ion-label stacked>Mot de passe</ion-label>
+            <ion-input type="password" [(ngModel)]="psw"></ion-input>
+        </ion-item>    
+    </ion-list>
+
+        <div padding>
+          <button ion-button color="primary" block (click)="fConnection()">Connexion</button><br>
+          <button ion-button class="btn-sign-up" block outline [navPush]="inscriptionPage">Inscription</button>
+        </div>
+
+</ion-content>

@@ -1,0 +1,27 @@
+page-connection {
+    a.pageInscription{
+        position:relative;
+        right:10px;
+    }
+    
+    .id-psw{
+        margin-top:auto;
+    }
+
+    .bg-image{
+        background: url(../../assets/imgs/grue.jpg) no-repeat;
+        background-position: bottom center;
+        background-size: cover; 
+    }
+
+    .input-wrapper > ion-label{
+        color: white !important;
+        text-shadow: 2px 1px 1px black !important;
+    }
+
+    .login{
+        background-color:rgba(255, 255, 255, 0.0);
+        color:white !important;
+        font-size: 1.2em;
+    }
+}
