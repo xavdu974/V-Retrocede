@@ -21,13 +21,24 @@ export class ConnectionPage {
   
   homePage = HomePage;
   inscriptionPage = InscriptionPage;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
 
   fConnection() {
-    this.navCtrl.push(this.homePage, {
-      monMail: this.mail
+    if(this.mail != null){
+      this.navCtrl.push(this.homePage, {
+        monMail: this.mail,
+      })
+    }else{
+      alert("C'est mort tu passes pas !");
+    } 
+  }
+
+  fInscription() {
+    this.navCtrl.push(this.inscriptionPage, {
+      monMail: this.mail,
     })
   }
 

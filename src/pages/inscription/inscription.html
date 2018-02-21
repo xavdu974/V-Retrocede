@@ -11,21 +11,21 @@
     <ion-list>
           <ion-item>
             <ion-label stacked>Adresse mail</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" id="mail" [(ngModel)]="eMail" value="{{eMail}}"></ion-input>
           </ion-item>
         
           <ion-item>
             <ion-label stacked>Mot de passe</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-input type="password" [(ngModel)]="pswA"></ion-input>
           </ion-item>
 
           <ion-item>
               <ion-label stacked>Confirmation du mot de passe</ion-label>
-              <ion-input type="passwordVerif"></ion-input>
+              <ion-input type="password" [(ngModel)]="pswB"></ion-input>
             </ion-item>
         
         </ion-list>
         <div padding>
-          <button ion-button color="primary" block>Inscription</button>
+          <button ion-button color="primary" (click)="fSignIn()" block>Inscription</button>
         </div>
 </ion-content>
