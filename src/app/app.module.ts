@@ -11,6 +11,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ConnectionPage } from '../pages/connection/connection';
 import { InscriptionPage } from '../pages/inscription/inscription';
 import { ProductPage } from '../pages/product/product';
+import { AngularFireModule } from 'angularfire2';//2
+import { FIREBASE_CONFIG } from './app.firebase.config';//3.
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ProductPage } from '../pages/product/product';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    //AngularFireModule.initializeApp(FIREBASE_CREDENTIALS), //
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),//1
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

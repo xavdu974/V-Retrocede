@@ -10,18 +10,18 @@
     <ion-list class="id-psw">
         <ion-item class="login">
             <ion-label stacked>Adresse mail</ion-label>
-            <ion-input type="text" [(ngModel)]="mail"></ion-input>
+            <ion-input type="text" [(ngModel)]="user.email"></ion-input>
         </ion-item>
         
         <ion-item class="login">
             <ion-label stacked>Mot de passe</ion-label>
-            <ion-input type="password" [(ngModel)]="psw"></ion-input>
+            <ion-input type="password" [(ngModel)]="user.password"></ion-input>
         </ion-item>    
     </ion-list>
 
         <div padding>
-          <button ion-button color="primary" block (click)="fConnection()">Connexion</button><br>
-          <button ion-button class="btn-sign-up" block outline (click)="fInscription()">Inscription</button>
+          <button ion-button color="primary" block (click)="login(user)">Connexion</button><br>
+          <button ion-button class="btn-sign-up" block outline (click)="register()">Inscription</button>
         </div>
 
 </ion-content>

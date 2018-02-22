@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProductPage } from '../product/product';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-home',
@@ -10,12 +11,25 @@ export class HomePage {
   eMail: string;
   productPage = ProductPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth: AngularFireAuth, private toast: ToastController ,public navCtrl: NavController, public navParams: NavParams) {
     this.eMail = this.navParams.get('monMail');
   }
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    this.afAuth.authState.subscribe(data => {
+      if (data.email && data.uid){
+        this.toast.create({
+          message: "Bienvenue",
+          duration: 3000
+        }).present();
+      }
+      else{
+        this.toast.create({
+          message: 'Detail d\'authentification introuvable.',
+          duration: 3000
+        }).present();
+      }
+    })
   }
 
   fProduct(refProduit){
