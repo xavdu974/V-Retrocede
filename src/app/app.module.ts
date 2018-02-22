@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ConnectionPage } from '../pages/connection/connection';
 import { InscriptionPage } from '../pages/inscription/inscription';
+import { ProductPage } from '../pages/product/product';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { InscriptionPage } from '../pages/inscription/inscription';
     HomePage,
     ListPage,
     ConnectionPage,
-    InscriptionPage
+    InscriptionPage,
+    ProductPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { InscriptionPage } from '../pages/inscription/inscription';
     HomePage,
     ListPage,
     ConnectionPage,
-    InscriptionPage
+    InscriptionPage,
+    ProductPage
   ],
   providers: [
     StatusBar,

@@ -32,7 +32,7 @@ export class ConnectionPage {
         monMail: this.mail,
       })
     }else{
-      alert("C'est mort tu passes pas !");
+      alert("Le mail est un mal nécessaire !");
     } 
   }
 
