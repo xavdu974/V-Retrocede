@@ -33,17 +33,27 @@ export class ConnectionPage {
   }
 
   async login(user: User){
-    try {
-      const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-      if(result){
-        this.navCtrl.push(this.homePage);
+    var that = this;
+    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+    .then(function(user) { //this n'est plus accessible après cette promesse -> that prend le relais
+      that.navCtrl.push(that.homePage);
+    })
+    .catch(function(error) { //en cas de non succès
+      if(error) { //si error n'est pas vide
+      alert(error);
+
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Combinaison login/pass incorrecte');
+        } else {
+          alert(errorMessage);
+        }
       }
+      });
+    
     }
-    catch (e){
-      console.log(user.email);
-      console.error(e);
-    }
-  }
 
   register(){
     this.navCtrl.push(this.inscriptionPage);

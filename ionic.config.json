@@ -1,6 +1,6 @@
 {
   "name": "V-Retrocede",
-  "app_id": "",
+  "app_id": "5fc66b9c",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
