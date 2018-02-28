@@ -5,6 +5,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Accueil</ion-title>
+    <ion-buttons end>
+      <button navPush="AddProductPage" ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
   
 </ion-header>
@@ -14,12 +19,34 @@
   <h3>Bienvenue {{eMail}}</h3>
 
   <ion-list>
-    <ion-item (click)="fProduct('Fiche produit')">
+    <ion-item (click)="fProduct('Bureau')">
       <ion-thumbnail item-start>
-        <img src="../../assets/imgs/grue.jpg">
+        <ion-img src="assets/imgs/bureau.jpg"></ion-img>
       </ion-thumbnail>
-      <h2>My Neighbor Totoro</h2>
-      <p>Hayao Miyazaki • 1988</p>
+      <h2>Bureau</h2>
+      <p>Dumez CA</p>
+      <p>Nice</p>
+      <p>26/02/2018</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+    <ion-item (click)="fProduct('Fauteuil')">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/fauteuil.jpg">
+      </ion-thumbnail>
+      <h2>Fauteuil</h2>
+      <p>Sogea</p>
+      <p>Grimaud</p>
+      <p>20/02/2018</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+    <ion-item (click)="fProduct('Carottage')">
+      <ion-thumbnail item-start>
+        <ion-img src="assets/imgs/carottage.jpg"></ion-img>
+      </ion-thumbnail>
+      <h2>Carottage</h2>
+      <p>Campenon Bernard TPCA</p>
+      <p>Carros</p>
+      <p>6/02/2018</p>
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>

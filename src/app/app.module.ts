@@ -14,6 +14,9 @@ import { ProductPage } from '../pages/product/product';
 import { AngularFireModule } from 'angularfire2';//2
 import { FIREBASE_CONFIG } from './app.firebase.config';//3.
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
+import { AddProductPage } from '../pages/add-product/add-product';
+import { AddProductPageModule } from '../pages/add-product/add-product.module';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,16 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     ListPage,
     ConnectionPage,
     InscriptionPage,
-    ProductPage
+    ProductPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     //AngularFireModule.initializeApp(FIREBASE_CREDENTIALS), //
+    AddProductPageModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),//1
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

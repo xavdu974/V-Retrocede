@@ -22,3 +22,12 @@
 ion-content, ion-header{
     font-family: 'vinci';
 }
+
+ion-navbar div{
+    background:rgb(0,68,137) !important;
+    color:white;
+}
+
+ion-navbar ion-title{
+    color:white !important; //ne fonctionne pas
+}

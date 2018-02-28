@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { InscriptionPage } from '../inscription/inscription';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -28,7 +28,7 @@ export class ConnectionPage {
 
   user = {} as User;
   
-  constructor(private afAuth : AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth : AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {
     
   }
 
@@ -40,15 +40,18 @@ export class ConnectionPage {
     })
     .catch(function(error) { //en cas de non succès
       if(error) { //si error n'est pas vide
-      alert(error);
-
-      // Handle Errors here.
       var errorCode = error.code;
-      var errorMessage = error.message;
+      //var errorMessage = error.message;
         if (errorCode === 'auth/wrong-password') {
-          alert('Combinaison login/pass incorrecte');
+          that.toast.create({
+            message: "Mot de passe incorrect",
+            duration: 3000
+          }).present();
         } else {
-          alert(errorMessage);
+          that.toast.create({
+            message: "Compte inconnu ou désactivé.",
+            duration: 3000
+          }).present();          
         }
       }
       });
