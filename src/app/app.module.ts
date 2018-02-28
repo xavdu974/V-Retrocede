@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AddProductPage } from '../pages/add-product/add-product';
 import { AddProductPageModule } from '../pages/add-product/add-product.module';
+import { ProductsListService } from '../services/products-list/products-list.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AddProductPageModule } from '../pages/add-product/add-product.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ProductsListService
   ]
 })
 export class AppModule {}

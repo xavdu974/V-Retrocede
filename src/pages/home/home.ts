@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ProductPage } from '../product/product';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AddProductPage } from '../add-product/add-product';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +10,6 @@ import { AddProductPage } from '../add-product/add-product';
 export class HomePage {
   eMail: string;
   productPage = ProductPage;
-  addProduct = AddProductPage;
 
   constructor(private afAuth: AngularFireAuth, private toast: ToastController ,public navCtrl: NavController, public navParams: NavParams) {
     this.eMail = this.navParams.get('monMail');

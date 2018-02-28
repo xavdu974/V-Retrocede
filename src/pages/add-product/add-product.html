@@ -17,31 +17,31 @@
   <ion-list>
         <ion-item>
           <ion-label stacked id="requis">Nom du produit :</ion-label>
-          <ion-input type="text" id="mail" value="" required></ion-input>
+          <ion-input type="text" id="mail" value="" [(ngModel)]="product.name" required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label stacked>Description :</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="product.description"></ion-input>
         </ion-item> 
       
         <ion-item>
           <ion-label stacked id="requis">Nom de la société propriétaire :</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input type="text" [(ngModel)]="product.society" required></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label stacked id="requis">Localisation :</ion-label>
-            <ion-input type="text" placeholder="Ville de récupération" required></ion-input>
+            <ion-input type="text" placeholder="Ville de récupération" [(ngModel)]="product.location" required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label stacked id="requis">Proposition :</ion-label>
-          <ion-input type="number" placeholder="Montant en euro" min="1" required></ion-input>
+          <ion-input type="number" placeholder="Montant en euro" min="1" [(ngModel)]="product.price" required></ion-input>
         </ion-item>
       
       </ion-list>
       <div padding>
-        <button ion-button color="primary" (click)="add()" block>Inscription</button>
+        <button ion-button color="primary" (click)="addProduct(product)" block>Ajouter</button>
       </div>
 </ion-content>
