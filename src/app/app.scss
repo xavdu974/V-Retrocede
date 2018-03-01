@@ -23,11 +23,10 @@ ion-content, ion-header{
     font-family: 'vinci';
 }
 
-ion-navbar div{
+ion-header div{
     background:rgb(0,68,137) !important;
-    color:white;
 }
 
-ion-navbar ion-title{
+ion-title{
     color:white !important; //ne fonctionne pas
 }

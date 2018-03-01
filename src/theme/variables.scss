@@ -41,6 +41,9 @@ $colors: (
   dark:       #222,
   vprimary:    rgb(0,68,137),
   vsecondary:  rgb(42,173,137),
+  vdanger: rgb(226,0,37),
+  vlight: white,
+
 );
 
 
@@ -48,7 +51,9 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$toolbar-md-title-text-color: map-get($colors, vlight);
+$toolbar-ios-title-text-color: map-get($colors, vlight);
+$toolbar-ws-title-text-color: map-get($colors, vlight);
 
 
 // App Material Design Variables

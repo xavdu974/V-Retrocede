@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ConnectionPage } from '../connection/connection';
 
 /**
  * Generated class for the InscriptionPage page.
@@ -16,25 +17,35 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'inscription.html',
 })
 export class InscriptionPage {
-  /*
-  eMail: string;
-  pswA: string = "";
-  pswB: string = "";
-  */
+  connectionPage = ConnectionPage
+  passVerif: string;
 
   user = {} as User;
 
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController) {
     //this.eMail = this.navParams.get('monMail');
   }
   
   async register(user: User){
-    try{
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      console.log(result);
-    }
-    catch(e){
-      console.error(e);
+    if(user.password == this.passVerif){
+      try{
+        await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+        this.toastCtrl.create({
+          message: "Le compte a bien été créé.",
+          duration: 3000
+        }).present();
+        this.navCtrl.push(this.connectionPage, {
+          monMail: this.user.email, // A FINIR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        })
+      }
+      catch(e){
+        console.error(e);
+      }
+    }else{
+      this.toastCtrl.create({
+        message: "Echec : Confirmation de mot de passe",
+        duration: 3000
+      }).present();
     }
   }
   /*

@@ -22,7 +22,7 @@
 
         <ion-item>
           <ion-label stacked>Description :</ion-label>
-          <ion-input type="text" [(ngModel)]="product.description"></ion-input>
+          <ion-textarea [(ngModel)]="product.description"></ion-textarea>
         </ion-item> 
       
         <ion-item>
@@ -42,6 +42,6 @@
       
       </ion-list>
       <div padding>
-        <button ion-button color="primary" (click)="addProduct(product)" block>Ajouter</button>
+        <button ion-button color="vprimary" (click)="addProduct(product)" block>Ajouter</button>
       </div>
 </ion-content>

@@ -10,7 +10,7 @@
     <ion-list class="id-psw">
         <ion-item class="login">
             <ion-label stacked>Adresse mail</ion-label>
-            <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+            <ion-input type="text" [(ngModel)]="user.email" value={{eMail}}></ion-input>
         </ion-item>
         
         <ion-item class="login">
@@ -21,7 +21,7 @@
 
         <div padding>
           <button ion-button color="vprimary" block (click)="login(user)">Connexion</button><br>
-          <button ion-button color="vsecondary" class="btn-sign-up" block outline (click)="register()">Inscription</button>
+          <button ion-button color="vprimary" class="btn-sign-up" block outline (click)="register()">Inscription</button>
         </div>
 
 </ion-content>

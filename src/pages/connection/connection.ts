@@ -18,9 +18,9 @@ import { HomePage } from '../home/home';
   templateUrl: 'connection.html',
 })
 export class ConnectionPage {
-  /*
-  mail: string;
-  psw: string;
+  
+  eMail: string;
+  /*psw: string;
   
   homePage = HomePage;*/
   inscriptionPage = InscriptionPage;
@@ -29,14 +29,16 @@ export class ConnectionPage {
   user = {} as User;
   
   constructor(private afAuth : AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {
-    
+    this.eMail = this.navParams.get('monMail');
   }
 
   async login(user: User){
     var that = this;
     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
     .then(function(user) { //this n'est plus accessible après cette promesse -> that prend le relais
-      that.navCtrl.push(that.homePage);
+      that.navCtrl.push(that.homePage, {
+        monMail: that.user.email,
+      });
     })
     .catch(function(error) { //en cas de non succès
       if(error) { //si error n'est pas vide
