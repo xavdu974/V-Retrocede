@@ -18,54 +18,22 @@
 <ion-content padding>
   <h3>Articles récents :</h3>
 
-  <ion-list>
-    <ion-item (click)="fProduct('Bureau')">
-      <ion-thumbnail item-start>
-        <ion-img src="assets/imgs/bureau.jpg"></ion-img>
-      </ion-thumbnail>
-      <h2>Bureau</h2>
-      <p>Dumez CA</p>
-      <p>Nice</p>
-      <p>26/02/2018</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item (click)="fProduct('Fauteuil')">
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/fauteuil.jpg">
-      </ion-thumbnail>
-      <h2>Fauteuil</h2>
-      <p>Sogea</p>
-      <p>Grimaud</p>
-      <p>20/02/2018</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item (click)="fProduct('Carottage')">
-      <ion-thumbnail item-start>
-        <ion-img src="assets/imgs/carottage.jpg"></ion-img>
-      </ion-thumbnail>
-      <h2>Carottage</h2>
-      <p>Campenon Bernard TPCA</p>
-      <p>Carros</p>
-      <p>6/02/2018</p>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>
-      Prodruit
-    </ion-list-header>
-    <ion-item *ngFor="let product of productsList$ | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
-      <ion-thumbnail item-start class="polaroid">
+  <ion-card class="card" *ngFor="let product of productsList$ | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
+    <ion-card-content class="cardContent">
+      <div class="polaroid">
         <img src="assets/imgs/carottage.jpg">
         <div class="labelPrice">
           <p>{{product.price}}€</p>
         </div>
-      </ion-thumbnail>
+      </div>
 
-      <h2 class="name">{{product.name}}</h2>
-      <h2 class="society">{{product.society}}</h2>
-      <p class="location">{{product.location}}</p>
-    </ion-item>
-  </ion-list>
+        <div class="descriptif">
+          <h2 class="name">{{product.name}}</h2>
+          <h2 class="society">{{product.society}}</h2>
+          <p class="location">{{product.location}}</p>
+          <p class="dateTime">28/03/2018</p>
+        </div>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
