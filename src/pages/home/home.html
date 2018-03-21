@@ -50,5 +50,22 @@
       <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Prodruit
+    </ion-list-header>
+    <ion-item *ngFor="let product of productsList$ | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
+      <ion-thumbnail item-start class="polaroid">
+        <img src="assets/imgs/carottage.jpg">
+        <div class="labelPrice">
+          <p>{{product.price}}€</p>
+        </div>
+      </ion-thumbnail>
+
+      <h2 class="name">{{product.name}}</h2>
+      <h2 class="society">{{product.society}}</h2>
+      <p class="location">{{product.location}}</p>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

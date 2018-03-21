@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController} from 'ionic-angular';
 import { ProductPage } from '../product/product';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ProductsListService } from '../../services/products-list/products-list.service';
+import { Observable } from 'rxjs/Observable';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +15,23 @@ export class HomePage {
   name: string;
   productPage = ProductPage;
 
-  constructor(private afAuth: AngularFireAuth, private toast: ToastController ,public navCtrl: NavController, public navParams: NavParams) {
+  productsList$: Observable<Product[]>;
+
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private toast: ToastController ,
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private products: ProductsListService
+  ) {
+    this.productsList$ = this.products
+      .getProductList()
+      .snapshotChanges()
+      .map(changes => {
+          return changes.map(c => ({
+            key: c.payload.key, ...c.payload.val(),
+          }));
+      });
   }
   
   ionViewDidLoad() {
@@ -53,4 +72,5 @@ export class HomePage {
     this.name = this.name.charAt(0).toUpperCase() + this.name.substring(1).toLowerCase();
     return this.name;
   }
+
 }

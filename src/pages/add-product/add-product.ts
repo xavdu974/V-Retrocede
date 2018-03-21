@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { Product } from '../../models/product.model';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { HomePage } from '../home/home';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the AddProductPage page.
@@ -18,20 +19,25 @@ import { HomePage } from '../home/home';
 })
 export class AddProductPage {
   product: Product = {
-    name:'',
-    description:'',
-    society:'',
-    location:'',
+    name:undefined,
+    description:undefined,
+    society:undefined,
+    location:undefined,
     price: undefined,
   }
 
   homePage = HomePage;
+  arrData : any;
+  todo$: AngularFireList<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toastCtrl: ToastController, private af: AngularFireDatabase) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddProductPage');
+    this.todo$ = this.af.list('/product-list');
+    console.log(this.todo$);
   }
 
   addProduct(product: Product){

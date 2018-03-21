@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'product.html',
 })
 export class ProductPage {
-  product = this.navParams.get('ref');
+  product = this.navParams.get('product');
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
