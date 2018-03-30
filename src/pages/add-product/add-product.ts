@@ -31,7 +31,7 @@ export class AddProductPage {
   todo$: AngularFireList<any[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toastCtrl: ToastController, private af: AngularFireDatabase) {
-
+    //initializeApp(FIREBASE_CONFIG)
   }
 
   ionViewDidLoad() {
@@ -49,4 +49,5 @@ export class AddProductPage {
       this.navCtrl.push(this.homePage);
     })
   }
+
 }

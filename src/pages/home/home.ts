@@ -4,7 +4,7 @@ import { ProductPage } from '../product/product';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
-import { Product } from '../../models/product.model';
+import { Product } from '../../models/product.model'; //Récupère la structure de l'objet
 
 @Component({
   selector: 'page-home',
@@ -58,7 +58,7 @@ export class HomePage {
     })
   }
 
-  mailToName(){
+  mailToName(){ //Récupère le prénom depuis le mail
     this.eMail = this.navParams.get('monMail');
     if(this.eMail != undefined){
       if(this.eMail.indexOf('@') < this.eMail.indexOf('.')){

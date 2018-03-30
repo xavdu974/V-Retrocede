@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AddProductPageModule } from '../pages/add-product/add-product.module';
 import { ProductsListService } from '../services/products-list/products-list.service';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ProductsListService } from '../services/products-list/products-list.ser
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ProductsListService
+    ProductsListService,
+    Camera,
   ]
 })
 export class AppModule {}

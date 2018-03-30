@@ -1,5 +1,5 @@
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyA2fmPs_H9yuXeIb8PtQLKrTrh9xVU7IPs",
+    apiKey: "AIzaSyBdbOJ3fzNHssjsUmQBXfUGLEmwduBn_QA",
     authDomain: "bdd-retro.firebaseapp.com",
     databaseURL: "https://bdd-retro.firebaseio.com",
     projectId: "bdd-retro",
