@@ -1,13 +1,16 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <img src="assets/imgs/rouge.JPG" alt="logo">
+      <ion-title>V-Rétrocède</ion-title>
+      <p>Les vraies réussites sont celles que l'on partage</p>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <img src="{{p.icon}}"/>
         {{p.title}}
       </button>
     </ion-list>

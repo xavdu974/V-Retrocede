@@ -16,17 +16,61 @@
 // automatically applied to the <body> element in the app.
 @font-face{
     font-family: 'vinci';
-    src: url('../../assets/fonts/Vinci/Vinci Sans Light.otf');
+    src: url('../../assets/fonts/Vinci/Vinci Sans Regular.otf');
+}
+
+@font-face{
+    font-family: 'vinciBold';
+    src: url('../../assets/fonts/Vinci/Vinci Sans Bold.otf');
 }
 
 ion-content, ion-header{
     font-family: 'vinci';
 }
 
-ion-header div{
-    background:rgb(0,68,137) !important;
+.toolbar-background-md{
+    background-color:white;
 }
 
-ion-title{
-    color:white !important; //ne fonctionne pas
+.ion-page ion-header div, .menu-inner ion-content, .menu-inner ion-content button{
+    background:rgb(0,68,137) !important;
+    color:white;
+}
+
+.menu-inner .toolbar-title-md{ //Application name
+    background:white !important;
+    color: rgb(0,68,137);
+    font-family: 'vinciBold';
+}
+
+ion-toolbar img{
+    width:50px;
+    float:left;
+}
+
+ion-toolbar p{ //Slogan
+    display:flex;
+    flex:1;
+    align-items:center;
+    padding: 0 12px;
+    margin: 0;
+    color: rgb(24,159,214);
+}
+
+.menu-inner .toolbar-md{
+    padding: 30px 13px !important;
+}
+
+.menu-inner ion-content .scroll-content{
+    margin-top:117px !important;
+}
+
+.menu-inner .list-md button img{
+    width:18px;
+    float:left;
+    margin-right:15px;
+}
+
+.item-inner{
+    border-style:none !important;
 }
