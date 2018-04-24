@@ -29,9 +29,9 @@ export class ProductPage {
   async takePhoto(){ //Utiliser la caméra et stocker une photo
     try{
       const options: CameraOptions = {
-        quality: 50,
-        targetHeight: 600,
-        targetWidth: 600,
+        quality: 100,
+        targetHeight: 800,
+        targetWidth: 800,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE
