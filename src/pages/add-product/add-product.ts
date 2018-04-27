@@ -24,20 +24,17 @@ export class AddProductPage {
     society:undefined,
     location:undefined,
     price: undefined,
+    nbPhoto: 0,
+    imgUrl: undefined,
   }
 
   homePage = HomePage;
-  arrData : any;
-  todo$: AngularFireList<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toastCtrl: ToastController, private af: AngularFireDatabase) {
-    //initializeApp(FIREBASE_CONFIG)
+  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddProductPage');
-    this.todo$ = this.af.list('/product-list');
-    console.log(this.todo$);
   }
 
   addProduct(product: Product){

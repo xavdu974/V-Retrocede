@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model'; //Récupère la structure de l'objet
+import { database } from 'firebase'
 
 @Component({
   selector: 'page-home',
@@ -15,27 +16,28 @@ export class HomePage {
   name: string;
   productPage = ProductPage;
 
-  productsList$: Observable<Product[]>;
+  productsList: Observable<Product[]>;
 
-  constructor(
-    private afAuth: AngularFireAuth, 
-    private toast: ToastController ,
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private products: ProductsListService
-  ) {
-    this.productsList$ = this.products
+  constructor(private afAuth: AngularFireAuth, private toast: ToastController , public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService){
+    this.productsList = this.products
       .getProductList()
       .snapshotChanges()
       .map(changes => {
           return changes.map(c => ({
             key: c.payload.key, ...c.payload.val(),
-          }));
+        }));
       });
   }
   
   ionViewDidLoad() {
+    //console.log(this.productsList);
     this.name = this.mailToName();
+    this.productsList.subscribe((value: any) => {
+      value.forEach(function(product, index: number = 0) {
+        console.log("Ma/mes clé(s) :"+product.key); //tes références => pour charger toutes les images d'un produit, stocke les liens dans un tableau avec pour case tes références
+      })});
+
+    //Message de bienvenue
     this.afAuth.authState.subscribe(data => {
       if (data.email && data.uid){
         this.toast.create({
@@ -52,13 +54,8 @@ export class HomePage {
     })
   }
 
-  fProduct(refProduit){
-    this.navCtrl.push(this.productPage, {
-      ref:refProduit,
-    })
-  }
-
-  mailToName(){ //Récupère le prénom depuis le mail
+  //Récupère le prénom depuis le mail
+  mailToName(){ 
     this.eMail = this.navParams.get('monMail');
     if(this.eMail != undefined){
       if(this.eMail.indexOf('@') < this.eMail.indexOf('.')){

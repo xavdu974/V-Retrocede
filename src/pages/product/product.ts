@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+//import * as firebase from 'firebase';
+
+import { Component, Query } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { storage } from 'firebase';
+import { storage, database } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Product } from '../../models/product.model';
+import { EditProductPage } from '../edit-product/edit-product';
+
+//import { FIREBASE_CONFIG } from '../../app/app.firebase.config'
 
 /**
  * Generated class for the ProductPage page.
@@ -16,17 +22,25 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   templateUrl: 'product.html',
 })
 export class ProductPage {
-  product = this.navParams.get('product');
+  editProductPage = EditProductPage;
+  currentImage;
+  product: Product = this.navParams.get('product');
 
   constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductPage');
-    console.log(this.product.key)
+    //Récupération de l'image
+    var img = document.getElementById('currentImage')as HTMLImageElement;
+    storage().ref(this.product.key).child("img1").getDownloadURL().then(function(url){
+      img.src = url;
+    }).catch(function(error){
+      img.src = "https://www.vinci-construction.fr/sites/default/files/styles/1440x678/public/images/covers/sfr_retouche_05042016.jpg?itok=ICaH9mdV";
+    });
   }
 
-  async takePhoto(){ //Utiliser la caméra et stocker une photo
+  //Utiliser la caméra et stocker une photo
+  async takePhoto(){ 
     try{
       const options: CameraOptions = {
         quality: 100,
@@ -40,11 +54,22 @@ export class ProductPage {
 
       const image = `data:image/jpeg;base64,${result}`;
       
-      const pictures =  storage().ref(this.product.key + '/' + this.product.name);
+      const pictures =  storage().ref(this.product.key).child("img1"); //Emplacement sur firebase
       pictures.putString(image, 'data_url');
+      console.log("Mon URL : " + pictures);
+
+      database().ref().child("product-list/"+this.product.key).update({
+        nbPhoto: 1,
+      })
     }catch(e){
       console.error(e);
     }
+  }
+
+  toEditPage(){
+    this.navCtrl.push(this.editProductPage,{
+      product: this.product,
+    })
   }
 
 }

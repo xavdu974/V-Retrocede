@@ -18,6 +18,8 @@ import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AddProductPageModule } from '../pages/add-product/add-product.module';
 import { ProductsListService } from '../services/products-list/products-list.service';
 import { Camera } from '@ionic-native/camera';
+import { EditProductPage } from '../pages/edit-product/edit-product'
+
 
 @NgModule({
   declarations: [
@@ -27,11 +29,11 @@ import { Camera } from '@ionic-native/camera';
     ConnectionPage,
     InscriptionPage,
     ProductPage,
+    EditProductPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    //AngularFireModule.initializeApp(FIREBASE_CREDENTIALS), //
     AddProductPageModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),//1
     AngularFireAuthModule,
@@ -44,7 +46,8 @@ import { Camera } from '@ionic-native/camera';
     ListPage,
     ConnectionPage,
     InscriptionPage,
-    ProductPage
+    ProductPage,
+    EditProductPage,
   ],
   providers: [
     StatusBar,

@@ -5,4 +5,6 @@ export interface Product{
     society: string;
     location: string;
     price: number;
+    nbPhoto: number;
+    imgUrl: string[];
 }

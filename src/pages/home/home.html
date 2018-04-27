@@ -17,11 +17,10 @@
 
 <ion-content padding>
   <h3>Articles récents :</h3>
-
-  <ion-card class="card" *ngFor="let product of productsList$ | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
+  <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
     <ion-card-content class="cardContent">
       <div class="polaroid">
-        <img src="https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/-L6R1nuj8IsGH42ghsq8%2FBriques?alt=media&token=bef14349-51b6-4f8c-8a5d-c603eccf2377">
+        <img src="https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/{{product.key}}%2Fimg1?alt=media">
         <div class="labelPrice">
           <p>{{product.price}}€</p>
         </div>
