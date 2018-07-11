@@ -8,3 +8,4 @@ export interface Product{
     nbPhoto: number;
     imgUrl: string[];
 }
+

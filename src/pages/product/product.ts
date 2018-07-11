@@ -1,6 +1,6 @@
 //import * as firebase from 'firebase';
 
-import { Component, Query } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { storage, database } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -58,6 +58,7 @@ export class ProductPage {
       pictures.putString(image, 'data_url');
       console.log("Mon URL : " + pictures);
 
+      
       database().ref().child("product-list/"+this.product.key).update({
         nbPhoto: 1,
       })
