@@ -7,12 +7,42 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>edit-product</ion-title>
+    <ion-title>Edition : {{product.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked id="requis">Nom du produit :</ion-label>
+      <ion-input type="text" id="mail" value="" [(ngModel)]="product.name" required></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Description :</ion-label>
+      <ion-textarea [(ngModel)]="product.description" required></ion-textarea>
+    </ion-item> 
+  
+    <ion-item>
+      <ion-label stacked id="requis">Nom de la société propriétaire :</ion-label>
+      <ion-input type="text" [(ngModel)]="product.society" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked id="requis">Localisation :</ion-label>
+        <ion-input type="text" placeholder="Ville de récupération" [(ngModel)]="product.location" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked id="requis">Proposition :</ion-label>
+      <ion-input type="number" placeholder="Montant en euro" min="1" [(ngModel)]="product.price" required></ion-input>
+    </ion-item>
+  
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="vprimary" (click)="editProduct(product)" block>Sauvegarder</button>
+  </div>
 </ion-content>
