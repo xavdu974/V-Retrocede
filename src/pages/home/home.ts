@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model'; //Récupère la structure de l'objet
-import { database } from 'firebase'
+//import { database } from 'firebase'
 
 @Component({
   selector: 'page-home',

@@ -55,11 +55,6 @@ page-product {
     .cell03{
         width:27%;
     }
-    .logo{
-        width:80px;
-        margin-right:5px;
-        box-shadow:1px 5px 5px grey;
-    }
 
     .row2{
         background-color:white;
@@ -74,5 +69,9 @@ page-product {
     }
     .description{
         text-align:justify;
+    }
+
+    .description, .location{
+        color:dimgrey;
     }
 }
