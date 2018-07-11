@@ -16,7 +16,7 @@
 
 
 <ion-content padding>
-  <h3>Dernières annonces :</h3>
+  <h4>Dernières annonces :</h4>
   <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
     <ion-card-content class="cardContent">
       <div class="polaroid">
