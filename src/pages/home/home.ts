@@ -32,10 +32,12 @@ export class HomePage {
   ionViewDidLoad() {
     //console.log(this.productsList);
     this.name = this.mailToName();
+    /* Utile ?!
     this.productsList.subscribe((value: any) => {
       value.forEach(function(product, index: number = 0) {
         console.log("Ma/mes clé(s) :"+product.key); //tes références => pour charger toutes les images d'un produit, stocke les liens dans un tableau avec pour case tes références
       })});
+    */
 
     //Message de bienvenue
     this.afAuth.authState.subscribe(data => {
