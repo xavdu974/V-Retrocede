@@ -1,11 +1,12 @@
 //import * as firebase from 'firebase';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { storage, database } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Product } from '../../models/product.model';
 import { EditProductPage } from '../edit-product/edit-product';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
 
 //import { FIREBASE_CONFIG } from '../../app/app.firebase.config'
 
@@ -22,11 +23,13 @@ import { EditProductPage } from '../edit-product/edit-product';
   templateUrl: 'product.html',
 })
 export class ProductPage {
+  products:AngularFireList<any>
   editProductPage = EditProductPage;
   currentImage;
   product: Product = this.navParams.get('product');
 
-  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase) {
+    this.products = database.list('product-list');
   }
 
   ionViewDidLoad() {
@@ -71,6 +74,15 @@ export class ProductPage {
     this.navCtrl.push(this.editProductPage,{
       product: this.product,
     })
+  }
+
+  toDeleteProduct(){
+    this.products.remove(this.product.key);
+    this.toast.create({
+      message: "Annonce supprimée",
+      duration: 3000
+    }).present();
+    this.navCtrl.pop();
   }
 
 }

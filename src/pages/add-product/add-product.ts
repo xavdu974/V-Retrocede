@@ -39,7 +39,6 @@ export class AddProductPage {
   }
 
   addProduct(product: Product){
-    //database().ref().child(product).
     this.products.addProduct(product).then(ref => {
       this.toastCtrl.create({
         message: 'Produit ajouté avec succès',
