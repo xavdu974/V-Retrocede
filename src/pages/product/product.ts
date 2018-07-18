@@ -7,6 +7,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Product } from '../../models/product.model';
 import { EditProductPage } from '../edit-product/edit-product';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 //import { FIREBASE_CONFIG } from '../../app/app.firebase.config'
 
@@ -28,7 +29,7 @@ export class ProductPage {
   currentImage;
   product: Product = this.navParams.get('product');
 
-  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
+  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer) {
     this.products = database.list('product-list');
   }
 
@@ -140,7 +141,14 @@ export class ProductPage {
       ]
     });
     actionSheet.present();
-
   }
 
+  photoView(){
+    try {
+      this.photoViewer.show("https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/" + this.product.key + "%2Fimg1?alt=media");
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
 }

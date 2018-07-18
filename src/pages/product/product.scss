@@ -75,3 +75,8 @@ page-product {
         color:dimgrey;
     }
 }
+.action-sheets-basic-page {
+    ion-icon.ion-md-trash, .action-sheet-destructive {
+        color: red;
+    }
+}

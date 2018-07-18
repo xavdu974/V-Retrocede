@@ -19,6 +19,7 @@ import { AddProductPageModule } from '../pages/add-product/add-product.module';
 import { ProductsListService } from '../services/products-list/products-list.service';
 import { Camera } from '@ionic-native/camera';
 import { EditProductPage } from '../pages/edit-product/edit-product'
+import { PhotoViewer } from '../../node_modules/@ionic-native/photo-viewer';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { EditProductPage } from '../pages/edit-product/edit-product'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProductsListService,
     Camera,
-    LoadingController
+    LoadingController,
+    PhotoViewer
   ]
 })
 export class AppModule {}
