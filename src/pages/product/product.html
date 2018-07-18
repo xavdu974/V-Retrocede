@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>{{product.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openSettings()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -29,14 +34,11 @@
             <h3 class="productName">{{product.name}}</h3>
             <h4>Description :</h4>
             <p class="description">{{product.description}}</p>
-            <h4>Localisation :</h4>
+            <h4>Lieu de récupération :</h4>
             <h6 class="location">{{product.location}}</h6>
           </td>
         </tr>
       </table> 
-    <button ion-button (click)="takePhoto()">Ajouter une photo</button>
-    <button ion-button (click)="toEditPage()">Modifier l'annonce</button>
-    <button ion-button (click)="toDeleteProduct()">Supprimer l'annonce</button>
   </div> 
 
 </ion-content>

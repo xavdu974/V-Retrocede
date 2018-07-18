@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Product } from '../../models/product.model';
 import { Subscription } from 'rxjs/Subscription';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database'
@@ -17,7 +17,7 @@ export class EditProductPage {
   productRef: AngularFireObject<Product>;
   myProduct;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase, private toast:ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
     this.products = database.list('product-list');
     //On récupère le produit concerné
     this.product = this.navParams.get('product');

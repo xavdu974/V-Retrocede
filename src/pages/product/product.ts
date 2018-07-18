@@ -1,7 +1,7 @@
 //import * as firebase from 'firebase';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 import { storage, database } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Product } from '../../models/product.model';
@@ -28,7 +28,7 @@ export class ProductPage {
   currentImage;
   product: Product = this.navParams.get('product');
 
-  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase) {
+  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController) {
     this.products = database.list('product-list');
   }
 
@@ -77,12 +77,70 @@ export class ProductPage {
   }
 
   toDeleteProduct(){
-    this.products.remove(this.product.key);
-    this.toast.create({
-      message: "Annonce supprimée",
-      duration: 3000
-    }).present();
-    this.navCtrl.pop();
+    const confirm = this.alertCtrl.create({
+      title: 'Suppression ?',
+      message: 'Après validation, cette annonce n\'apparaîtra plus sur le catalogue.',
+      buttons: [
+        {
+          text: 'Annuler'
+        },
+        {
+          text: 'Supprimer',
+          handler: () => {
+            this.products.remove(this.product.key);
+            this.toast.create({
+              message: "Annonce supprimée",
+              duration: 3000
+            }).present();
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  openSettings(){
+    console.log("Mon open setting");
+
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Options',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Ajouter une photo',
+          icon: !this.platform.is('ios') ? 'camera' : null,
+          handler: () => {
+            this.takePhoto();
+          }
+        },
+        {
+          text: 'Modifier l\'annonce',
+          icon: !this.platform.is('ios') ? 'create' : null,
+          handler: () => {
+            this.toEditPage();
+          }
+        },
+        {
+          text: 'Supprimer l\'annonce',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'trash' : null,
+          handler: () => {
+            this.toDeleteProduct();
+          }
+        },
+        {
+          text: 'Annuler',
+          role: 'cancel', // will always sort to be on the bottom
+          icon: !this.platform.is('ios') ? 'close' : null,
+          handler: () => {
+            console.log('Annuler');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+
   }
 
 }

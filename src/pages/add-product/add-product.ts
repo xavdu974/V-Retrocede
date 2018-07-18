@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { Product } from '../../models/product.model';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { HomePage } from '../home/home';
-import { database } from 'firebase';
-//import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the AddProductPage page.
