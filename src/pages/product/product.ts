@@ -144,11 +144,6 @@ export class ProductPage {
   }
 
   photoView(){
-    try {
       this.photoViewer.show("https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/" + this.product.key + "%2Fimg1?alt=media");
-    }
-    catch(error) {
-      console.log(error);
-    }
   }
 }
