@@ -6,8 +6,8 @@
     </button>
     <ion-title>Annonces</ion-title>
     <ion-buttons end>
-      <button navPush="AddProductPage" ion-button>
-        <ion-icon name="add"></ion-icon>
+      <button ion-button [navPush]="testPage">
+        <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -19,10 +19,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingText="Tirez pour actualiser"
-      refreshingText="Actualisation ???">
+      refreshingText="Actualisation">
     </ion-refresher-content>
   </ion-refresher>
-
   <h4>Dernières annonces :</h4>
   <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
     <ion-card-content class="cardContent">
@@ -32,14 +31,15 @@
           <p>{{product.price}}€</p>
         </div>
       </div>
-
-        <div class="descriptif">
-          <h2 class="name">{{product.name}}</h2>
-          <p class="society">{{product.society}}</p>
-          <p class="location">{{product.location}}</p>
-          <p class="dateTime">28/03/2018</p>
-        </div>
+      <div class="descriptif">
+        <h2 class="name">{{product.name}}</h2>
+        <p class="society">{{product.society}}</p>
+        <p class="location">{{product.location}}</p>
+        <p class="dateTime">28/03/2018</p>
+      </div>
     </ion-card-content>
   </ion-card>
-
+  <ion-fab right bottom class="addButton">
+    <button ion-fab color="vprimary" navPush="AddProductPage"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

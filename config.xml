@@ -96,4 +96,5 @@
     <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
     <allow-navigation href="http://192.168.8.100:8100" />
     <engine name="android" spec="6.3.0" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model'; //Récupère la structure de l'objet
+import { TestPage } from '../test/test';
 //import { database } from 'firebase'
 
 @Component({
@@ -12,13 +13,16 @@ import { Product } from '../../models/product.model'; //Récupère la structure 
   templateUrl: 'home.html'
 })
 export class HomePage {
+  testPage = TestPage;
   eMail: string;
   name: string;
   productPage = ProductPage;
-
+  mesProduits: string[];
+  
   productsList: Observable<Product[]>;
 
   constructor(private afAuth: AngularFireAuth, private toast: ToastController , public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService){
+    //this.initializeItems();
     this.productsList = this.products
       .getProductList()
       .snapshotChanges()
@@ -80,4 +84,24 @@ export class HomePage {
     }, 2000);
   }
 
+  /*
+  initializeItems() {
+    this.mesProduits = ["Banane", "Pomme", "Orange", "Grenadine"];
+  }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.mesProduits = this.mesProduits.filter((mesProduits) => {
+        return (mesProduits.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+    
+  }*/
 }

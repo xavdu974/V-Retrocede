@@ -8,6 +8,7 @@ import { Product } from '../../models/product.model';
 import { EditProductPage } from '../edit-product/edit-product';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { CallNumber } from '@ionic-native/call-number'
 
 //import { FIREBASE_CONFIG } from '../../app/app.firebase.config'
 
@@ -24,12 +25,15 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
   templateUrl: 'product.html',
 })
 export class ProductPage {
+  home = 'ConnectionPage';
+  prod = 'ProductPage';
+  edit = 'InscriptionPage';
   products:AngularFireList<any>
   editProductPage = EditProductPage;
   currentImage;
   product: Product = this.navParams.get('product');
 
-  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer) {
+  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer, private callNumber: CallNumber) {
     this.products = database.list('product-list');
   }
 
@@ -78,7 +82,7 @@ export class ProductPage {
   }
 
   toDeleteProduct(){
-    const confirm = this.alertCtrl.create({
+    this.alertCtrl.create({
       title: 'Suppression ?',
       message: 'Après validation, cette annonce n\'apparaîtra plus sur le catalogue.',
       buttons: [
@@ -97,8 +101,7 @@ export class ProductPage {
           }
         }
       ]
-    });
-    confirm.present();
+    }).present();
   }
 
   openSettings(){
@@ -145,5 +148,33 @@ export class ProductPage {
 
   photoView(){
       this.photoViewer.show("https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/" + this.product.key + "%2Fimg1?alt=media");
+  }
+
+  toCall(){
+    this.alertCtrl.create({
+      title: 'Souhaitez-vous contacter le vendeur ?',
+      message: 'Numéro : 0603065731',
+      buttons: [
+        {
+          text: 'Annuler',
+        },
+        {
+          text: 'Appeller',
+          handler: () => {
+            this.callNumber.callNumber("0603065731", true)
+              .then(res => console.log('Appel lancé !', res))
+              .catch(err => console.log('Erreur lancement d\'appel', err));
+            this.toast.create({
+              message: "Numérotation en cours ...",
+              duration: 3000
+            }).present();
+          }
+        }
+      ]
+    }).present();
+  }
+
+  toMail(){
+
   }
 }

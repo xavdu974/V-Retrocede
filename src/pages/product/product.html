@@ -18,27 +18,46 @@
 </ion-header>
 
 
-<ion-content padding class="action-sheets-basic-page">
+    
+<ion-content>
+    
+  
   <div class="head">
     <img class="photo" src="https://www.webmarketing-com.com/wp-content/uploads/2015/04/temps-de-chargement-2.jpg" id="currentImage" (click)="photoView()">
   </div>
+  
   <div class="contenu">
     <table class="infoTab">
-        <tr class="row1">
-          <td class="cell01" align="left"><h1 class="price">{{product.price}}</h1></td>
-          <td align="center"><span class="date">17/05/2018</span></td>
-          <td class="cell03"><img class="logo" src="assets/imgs/society/Triverio.png"></td>
-        </tr>
-        <tr class="row2">
-          <td colspan=3 class="cell11">
-            <h3 class="productName">{{product.name}}</h3>
-            <h4>Description :</h4>
-            <p class="description">{{product.description}}</p>
-            <h4>Lieu de récupération :</h4>
-            <h6 class="location">{{product.location}}</h6>
-          </td>
-        </tr>
-      </table> 
+      <tr class="row1">
+        <td class="cell01" align="left"><h1 class="price">{{product.price}}</h1></td>
+        <td align="center"><span class="date">17/05/2018</span></td>
+        <td class="cell03"><img class="logo" src="assets/imgs/society/Triverio.png"></td>
+      </tr>
+      <tr class="row2">
+        <td colspan=3 class="cell11">
+          <h3 class="productName">{{product.name}}</h3>
+          <h4>Description :</h4>
+          <p class="description">{{product.description}}</p>
+          <h4>Lieu de récupération :</h4>
+          <h6 class="location">{{product.location}}</h6>
+        </td>
+      </tr>
+    </table> 
   </div> 
-
+  
 </ion-content>
+
+<ion-footer>
+    <ion-segment [(ngModel)]="relationship" (ionChange)="segmentChanged($event)" color="vlight" class="bottomBar">
+        <ion-segment-button role="button" (click)="toCall()">
+          <ion-icon name="call"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button role="link" href="melto:xavier.payet@vinci-construction.fr">
+          <ion-icon name="mail"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="enemies">
+          <ion-icon name="bookmark"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+  </ion-footer>
+
