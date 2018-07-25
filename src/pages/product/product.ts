@@ -34,7 +34,7 @@ export class ProductPage {
   product: Product = this.navParams.get('product');
 
   constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer, private callNumber: CallNumber) {
-    this.products = database.list('product-list');
+    this.products = this.database.list('product-list');
   }
 
   ionViewDidLoad() {
@@ -93,10 +93,7 @@ export class ProductPage {
           text: 'Supprimer',
           handler: () => {
             this.products.remove(this.product.key);
-            this.toast.create({
-              message: "Annonce supprimée",
-              duration: 3000
-            }).present();
+            this.toastMessage("Annonce supprimée");
             this.navCtrl.pop();
           }
         }
@@ -159,15 +156,11 @@ export class ProductPage {
           text: 'Annuler',
         },
         {
-          text: 'Appeller',
+          text: 'Appeler',
           handler: () => {
             this.callNumber.callNumber("0603065731", true)
-              .then(res => console.log('Appel lancé !', res))
-              .catch(err => console.log('Erreur lancement d\'appel', err));
-            this.toast.create({
-              message: "Numérotation en cours ...",
-              duration: 3000
-            }).present();
+              .then(res => this.toastMessage("Numération en cours ..."))
+              .catch(err => this.toastMessage("Une erreur est survenue !")) 
           }
         }
       ]
@@ -175,6 +168,14 @@ export class ProductPage {
   }
 
   toMail(){
+    window.location.href='mailto:xav@yopmail.com?subject=Article : ' + this.product.name;
+    this.toastMessage("Ouverture de la messagerie ...");
+  }
 
+  toastMessage(message){
+    this.toast.create({
+      message: message,
+      duration: 3000
+    }).present();
   }
 }
