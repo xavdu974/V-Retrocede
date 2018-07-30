@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model'; //Récupère la structure de l'objet
-import { TestPage } from '../test/test';
+import { ProfilePage } from '../profile/profile';
 //import { database } from 'firebase'
 
 @Component({
@@ -13,7 +13,7 @@ import { TestPage } from '../test/test';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  testPage = TestPage;
+  profilePage = ProfilePage;
   eMail: string;
   name: string;
   productPage = ProductPage;

@@ -22,6 +22,7 @@ import { ProductsListService } from '../services/products-list/products-list.ser
 import { Camera } from '@ionic-native/camera';
 import { EditProductPageModule } from '../pages/edit-product/edit-product.module';
 import { TestPageModule } from '../pages/test/test.module';
+import { ProfilePageModule } from '../pages/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TestPageModule } from '../pages/test/test.module';
     ProductPageModule,
     ConnectionPageModule,
     EditProductPageModule,
+    ProfilePageModule,
     TestPageModule
   ],
   bootstrap: [IonicApp],

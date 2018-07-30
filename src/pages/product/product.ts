@@ -102,8 +102,7 @@ export class ProductPage {
   }
 
   openSettings(){
-    console.log("Mon open setting");
-
+    //Menu de l'article
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Options',
       cssClass: 'action-sheets-basic-page',
@@ -159,8 +158,8 @@ export class ProductPage {
           text: 'Appeler',
           handler: () => {
             this.callNumber.callNumber("0603065731", true)
-              .then(res => this.toastMessage("Numération en cours ..."))
-              .catch(err => this.toastMessage("Une erreur est survenue !")) 
+              .then(res => this.toastMessage("Numérotation en cours ..."))
+              .catch(err => this.toastMessage("Une erreur s'est produite !")) 
           }
         }
       ]
@@ -170,6 +169,10 @@ export class ProductPage {
   toMail(){
     window.location.href='mailto:xav@yopmail.com?subject=Article : ' + this.product.name;
     this.toastMessage("Ouverture de la messagerie ...");
+  }
+
+  toSave(){
+    this.toastMessage("Sauvegarde non disponible !");
   }
 
   toastMessage(message){
