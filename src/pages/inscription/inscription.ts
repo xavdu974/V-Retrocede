@@ -4,13 +4,6 @@ import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ConnectionPage } from '../connection/connection';
 
-/**
- * Generated class for the InscriptionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-inscription',
@@ -23,7 +16,6 @@ export class InscriptionPage {
   user = {} as User;
 
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController) {
-    //this.eMail = this.navParams.get('monMail');
   }
   
   async register(user: User){
@@ -35,7 +27,7 @@ export class InscriptionPage {
           duration: 3000
         }).present();
         this.navCtrl.push(this.connectionPage, {
-          monMail: this.user.email, // A FINIR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          monMail: this.user.email,
         })
       }
       catch(e){
@@ -48,21 +40,7 @@ export class InscriptionPage {
       }).present();
     }
   }
-  /*
-  fSignIn(){
-    //Vérifications adresse email
-    if(this.eMail == undefined || this.pswA.trim() == ""){
-      alert("Tous les champs sont obligatoires !")
-    }else if(this.pswA != this.pswB){
-      alert("Mots de passe non identiques !");
-      this.pswA = "";
-      this.pswB = "";    
-    }else{
-      alert("Vérification : ok");
-    }
 
-  }
-  */
   ionViewDidLoad() {
     console.log('ionViewDidLoad InscriptionPage');
   }

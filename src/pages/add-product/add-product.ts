@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Product } from '../../models/product.model';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { HomePage } from '../home/home';
-
-/**
- * Generated class for the AddProductPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ToastService } from '../../services/toast/toast.service';
 
 @IonicPage()
 @Component({
@@ -29,7 +23,7 @@ export class AddProductPage {
 
   homePage = HomePage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toast: ToastService) {
   }
 
   ionViewDidLoad() {
@@ -38,10 +32,7 @@ export class AddProductPage {
 
   addProduct(product: Product){
     this.products.addProduct(product).then(ref => {
-      this.toastCtrl.create({
-        message: 'Produit ajouté avec succès',
-        duration: 3000
-      }).present();
+      this.toast.show('Produit ajouté avec succès');
       this.navCtrl.push(this.homePage);
     })
   }

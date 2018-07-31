@@ -1,7 +1,7 @@
 //import * as firebase from 'firebase';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Platform, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ActionSheetController, AlertController } from 'ionic-angular';
 import { storage, database } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Product } from '../../models/product.model';
@@ -9,6 +9,7 @@ import { EditProductPage } from '../edit-product/edit-product';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { CallNumber } from '@ionic-native/call-number'
+import { ToastService } from '../../services/toast/toast.service';
 
 //import { FIREBASE_CONFIG } from '../../app/app.firebase.config'
 
@@ -33,7 +34,7 @@ export class ProductPage {
   currentImage;
   product: Product = this.navParams.get('product');
 
-  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast:ToastController, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer, private callNumber: CallNumber) {
+  constructor(private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast: ToastService, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer, private callNumber: CallNumber) {
     this.products = this.database.list('product-list');
   }
 
@@ -93,7 +94,7 @@ export class ProductPage {
           text: 'Supprimer',
           handler: () => {
             this.products.remove(this.product.key);
-            this.toastMessage("Annonce supprimée");
+            this.toast.show("Annonce supprimée");
             this.navCtrl.pop();
           }
         }
@@ -158,8 +159,8 @@ export class ProductPage {
           text: 'Appeler',
           handler: () => {
             this.callNumber.callNumber("0603065731", true)
-              .then(res => this.toastMessage("Numérotation en cours ..."))
-              .catch(err => this.toastMessage("Une erreur s'est produite !")) 
+              .then(res => this.toast.show("Numérotation en cours ..."))
+              .catch(err => this.toast.show("Une erreur s'est produite !")) 
           }
         }
       ]
@@ -168,17 +169,10 @@ export class ProductPage {
 
   toMail(){
     window.location.href='mailto:xav@yopmail.com?subject=Article : ' + this.product.name;
-    this.toastMessage("Ouverture de la messagerie ...");
+    this.toast.show("Ouverture de la messagerie ...");
   }
 
   toSave(){
-    this.toastMessage("Sauvegarde non disponible !");
-  }
-
-  toastMessage(message){
-    this.toast.create({
-      message: message,
-      duration: 3000
-    }).present();
+    this.toast.show("Sauvegarde non disponible !");
   }
 }

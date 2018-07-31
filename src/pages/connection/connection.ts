@@ -4,13 +4,7 @@ import { InscriptionPage } from '../inscription/inscription';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
-
-/**
- * Generated class for the ConnectionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ToastService } from '../../services/toast/toast.service';
 
 @IonicPage()
 @Component({
@@ -18,42 +12,36 @@ import { HomePage } from '../home/home';
   templateUrl: 'connection.html',
 })
 export class ConnectionPage {
-  
+  name: string;
   eMail: string;
-  /*psw: string;
-  
-  homePage = HomePage;*/
   inscriptionPage = InscriptionPage;
   homePage = HomePage;
 
   user = {} as User;
   
-  constructor(private afAuth : AngularFireAuth, private toast: ToastController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth : AngularFireAuth, private toast: ToastService, public navCtrl: NavController, public navParams: NavParams) {
     this.eMail = this.navParams.get('monMail');
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ConnectionPage');
+    this.name = this.mailToName();
   }
 
   async login(user: User){
     var that = this;
     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
     .then(function(user) { //this n'est plus accessible après cette promesse -> that prend le relais
-      that.navCtrl.push(that.homePage, {
-        monMail: that.user.email,
-      });
+      that.toast.show("Bienvenue " + that.mailToName())
+      that.navCtrl.push(that.homePage);
     })
-    .catch(function(error) { //en cas de non succès
-      if(error) { //si error n'est pas vide
+    .catch(function(error) {
+      if(error) {
       var errorCode = error.code;
-      //var errorMessage = error.message;
         if (errorCode === 'auth/wrong-password') {
-          that.toast.create({
-            message: "Mot de passe incorrect",
-            duration: 3000
-          }).present();
+          that.toast.show("Mot de passe incorrect");
         } else {
-          that.toast.create({
-            message: "Compte inconnu ou désactivé.",
-            duration: 3000
-          }).present();          
+          that.toast.show("Compte inconnu ou désactivé.");         
         }
       }
       });
@@ -64,25 +52,18 @@ export class ConnectionPage {
     this.navCtrl.push(this.inscriptionPage);
   }
 
-/*
-  fConnection() {
-    if(this.mail != null){
-      this.navCtrl.push(this.homePage, {
-        monMail: this.mail,
-      })
+  mailToName(){ 
+    if(this.user.email != undefined){
+      if(this.user.email.indexOf('@') < this.user.email.indexOf('.')){
+        this.name = this.user.email.substring(0, this.user.email.indexOf('@'));
+      }else{
+        this.name = this.user.email.substring(0, this.user.email.indexOf('.'));
+      }
     }else{
-      alert("Le mail est un mal nécessaire !");
-    } 
+      this.name = "! On se connait ?";
+    }
+    this.name = this.name.charAt(0).toUpperCase() + this.name.substring(1).toLowerCase();
+    return this.name;
   }
 
-  fInscription() {
-    this.navCtrl.push(this.inscriptionPage, {
-      monMail: this.mail,
-    })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConnectionPage');
-  }
-*/
 }

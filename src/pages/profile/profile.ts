@@ -6,12 +6,7 @@ import { AngularFireDatabase } from '../../../node_modules/angularfire2/database
 import { HomePage } from '../home/home';
 import { auth } from '../../../node_modules/firebase';
 import { Observable } from '../../../node_modules/rxjs/Observable';
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ToastService } from '../../services/toast/toast.service';
 
 @IonicPage()
 @Component({
@@ -19,15 +14,13 @@ import { Observable } from '../../../node_modules/rxjs/Observable';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  //profile = {} as Profile
   homePage = HomePage;
   profile = {} as Profile;
   profiles: Observable<any[]>
   currentUser = auth().currentUser.uid; 
 
-  constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,
-    public navCtrl: NavController, public navParams: NavParams) {
-      
+  constructor(private toast: ToastService , private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,
+    public navCtrl: NavController, public navParams: NavParams) { 
   }
 
   ionViewDidLoad() {
@@ -41,10 +34,12 @@ export class ProfilePage {
   }
 
   createProfile(){
-    console.table(this.profile);
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
-        .then(() => this.navCtrl.push(this.homePage));
+        .then(() => {
+          this.toast.show("Profile mis à jour"), 
+          this.navCtrl.push(this.homePage)
+        });
     })
   }
 }

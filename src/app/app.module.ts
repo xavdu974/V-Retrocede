@@ -23,6 +23,7 @@ import { Camera } from '@ionic-native/camera';
 import { EditProductPageModule } from '../pages/edit-product/edit-product.module';
 import { TestPageModule } from '../pages/test/test.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
+import { ToastService } from '../services/toast/toast.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
     Camera,
     LoadingController,
     PhotoViewer,
-    CallNumber
+    CallNumber,
+    ToastService,
   ]
 })
 export class AppModule {}
