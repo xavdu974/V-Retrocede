@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ProductPage } from '../product/product';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model';
 import { ProfilePage } from '../profile/profile';
-import { ToastService } from '../../services/toast/toast.service';
 
 @Component({
   selector: 'page-home',
@@ -21,7 +19,7 @@ export class HomePage {
   
   productsList: Observable<Product[]>;
 
-  constructor(private afAuth: AngularFireAuth, private toast: ToastService , public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService){
+  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService){
     this.productsList = this.products
       .getProductList()
       .snapshotChanges()

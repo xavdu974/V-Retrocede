@@ -24,6 +24,7 @@ import { EditProductPageModule } from '../pages/edit-product/edit-product.module
 import { TestPageModule } from '../pages/test/test.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ToastService } from '../services/toast/toast.service';
+import { ProfilUserService } from '../services/profil-user/profil-user.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ToastService } from '../services/toast/toast.service';
     PhotoViewer,
     CallNumber,
     ToastService,
+    ProfilUserService
   ]
 })
 export class AppModule {}

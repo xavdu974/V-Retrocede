@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { AddProductPage } from '../pages/add-product/add-product';
 import { ConnectionPage } from '../pages/connection/connection';
 import { InscriptionPage } from '../pages/inscription/inscription';
+import { TestPage } from '../pages/test/test';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class MyApp {
       { title: 'Annonces', icon: 'assets/icon/wish.svg', component: HomePage },
       { title: 'Déposer une annonce', icon: 'assets/icon/edit.svg', component: AddProductPage },
       { title: 'Connexion', icon: 'assets/icon/favorite.svg', component: ConnectionPage },
-      { title: 'Inscription', icon: 'assets/icon/search.svg', component: InscriptionPage }
+      { title: 'Inscription', icon: 'assets/icon/search.svg', component: InscriptionPage },
+      { title: 'Page test', icon: '#', component: TestPage }
     ];
 
   }

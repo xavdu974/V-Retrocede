@@ -7,12 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Page de test</ion-title>
+    <ion-title>{{ user }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <p>
+    Last Name : {{(profile | async)?.lastName}}
+  </p>
+  
+  <p>
+    Fist Name : {{(profile | async)?.firstName}}
+  </p>
 
+  <p>
+    Phone number : {{(profile | async)?.phoneNumber}}
+  </p>
 </ion-content>

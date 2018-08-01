@@ -1,43 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Profile } from '../../models/profile';
 import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 import { HomePage } from '../home/home';
-import { auth } from '../../../node_modules/firebase';
-import { Observable } from '../../../node_modules/rxjs/Observable';
 import { ToastService } from '../../services/toast/toast.service';
+import { ProfilUserService } from '../../services/profil-user/profil-user.service';
+
 
 @IonicPage()
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
   homePage = HomePage;
+  uID = this.currentUser.getUID(); 
+  profileData = this.currentUser.getProfile();
   profile = {} as Profile;
-  profiles: Observable<any[]>
-  currentUser = auth().currentUser.uid; 
+  test;
 
-  constructor(private toast: ToastService , private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,
+  constructor(private toast: ToastService , private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,private currentUser: ProfilUserService,
     public navCtrl: NavController, public navParams: NavParams) { 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    this.profiles = this.afDatabase.list(`profile/${this.currentUser}`).valueChanges();
-    this.profiles.forEach(element => {
-      this.profile.firstName = element[0];
-      this.profile.lastName = element[1];
-      this.profile.phoneNumber = element[2];
-    });
   }
 
   createProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
         .then(() => {
-          this.toast.show("Profile mis à jour"), 
+          this.toast.show("Profil mis à jour"), 
           this.navCtrl.push(this.homePage)
         });
     })

@@ -16,17 +16,17 @@
 <ion-content padding>
     <ion-item>
       <ion-label stacked>Nom</ion-label>
-      <ion-input [(ngModel)]="profile.lastName" value={{profile.lastName}}></ion-input>
+      <ion-input [(ngModel)]="profile.lastName" value="{{(profileData | async)?.lastName}}"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Prénom</ion-label>
-      <ion-input [(ngModel)]="profile.firstName" value="{{profile.firstName}}"></ion-input>
+      <ion-input [(ngModel)]="profile.firstName" value="{{(profileData | async)?.firstName}}"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Numéro de téléphone</ion-label>
-      <ion-input [(ngModel)]="profile.phoneNumber" value="{{profile.phoneNumber}}"></ion-input>
+      <ion-input [(ngModel)]="profile.phoneNumber" value="{{(profileData | async)?.phoneNumber}}"></ion-input>
     </ion-item>
   
   <button ion-button clear block (click)="createProfile()">Valider</button>

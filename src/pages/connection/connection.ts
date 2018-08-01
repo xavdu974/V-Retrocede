@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InscriptionPage } from '../inscription/inscription';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
