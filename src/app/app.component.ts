@@ -8,6 +8,8 @@ import { AddProductPage } from '../pages/add-product/add-product';
 import { ConnectionPage } from '../pages/connection/connection';
 import { InscriptionPage } from '../pages/inscription/inscription';
 import { ProfilePage } from '../pages/profile/profile'
+import { AngularFireAuth } from '../../node_modules/angularfire2/auth';
+import { auth } from '../../node_modules/firebase';
 
 
 @Component({
@@ -19,8 +21,9 @@ export class MyApp {
   rootPage: any = ConnectionPage;
 
   pages: Array<{title: string, icon: string , component: any}>;
+  user: Array<{title: string, icon: string, component: any}>
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private afAuth : AngularFireAuth, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -29,9 +32,13 @@ export class MyApp {
       { title: 'Déposer une annonce', icon: 'assets/icon/edit.svg', component: AddProductPage },
       { title: 'Connexion', icon: 'assets/icon/favorite.svg', component: ConnectionPage },
       { title: 'Inscription', icon: 'assets/icon/search.svg', component: InscriptionPage },
-      { title: 'Profile', icon: 'assets/icon/constructor.svg', component: ProfilePage }
+      
     ];
 
+    this.user = [
+      { title: 'Profil', icon: 'assets/icon/constructor.svg', component: ProfilePage },
+      { title: 'Deconnexion', icon: 'assets/icon/power.svg', component: ConnectionPage }
+    ]
   }
 
   initializeApp() {
@@ -45,7 +52,11 @@ export class MyApp {
 
   openPage(page) {
     // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // we wouldn't want the back button to show in this scenario
+    if(page.title == "Deconnexion"){
+      this.afAuth.auth.signOut();
+    }
+
     this.nav.setRoot(page.component);
   }
 }

@@ -21,17 +21,20 @@
 </ion-header>
 
 <ion-content padding>
-  <img src="assets/imgs/society/Triverio.png" alt="Society" class="societyLogo">
+  
 
     <ion-card class="profileInfo">
+      <ion-card-header>
+        <img src="assets/imgs/society/Triverio.png" alt="Society" class="societyLogo">
+      </ion-card-header>
       <ion-card-content >
-        <h1>
+        <h1 class="Name">
           {{(profile | async)?.lastName}} {{(profile | async)?.firstName}}
         </h1>
-        <h2>
+        <h2 class="Society">
           {{(profile | async)?.societyName}}
         </h2>
-        <h2>
+        <h2 class="">
           {{(profile | async)?.phoneNumber}}
         </h2>
         <h2>
