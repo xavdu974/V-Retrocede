@@ -4,14 +4,14 @@ import { ProductPage } from '../product/product';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model';
-import { ProfilePage } from '../profile/profile';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  profilePage = ProfilePage;
+  editProfilePage = EditProfilePage;
   eMail: string;
 
   productPage = ProductPage;

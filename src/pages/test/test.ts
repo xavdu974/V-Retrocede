@@ -14,8 +14,8 @@ import { ProfilUserService } from '../../services/profil-user/profil-user.servic
   templateUrl: 'test.html',
 })
 export class TestPage {
-  user = this.currentUser.getUID();
-  profile = this.currentUser.getProfile();
+  user = this.currentUser.getUID(); //Pour obtenir l'id de l'utilisateur connecté
+  profile = this.currentUser.getProfile(); //Pour obtenir les infos de l'utilisateur connecté
 
 
   constructor(private currentUser: ProfilUserService,

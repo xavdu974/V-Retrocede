@@ -7,7 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { AddProductPage } from '../pages/add-product/add-product';
 import { ConnectionPage } from '../pages/connection/connection';
 import { InscriptionPage } from '../pages/inscription/inscription';
-import { TestPage } from '../pages/test/test';
+import { ProfilePage } from '../pages/profile/profile'
 
 
 @Component({
@@ -29,7 +29,7 @@ export class MyApp {
       { title: 'Déposer une annonce', icon: 'assets/icon/edit.svg', component: AddProductPage },
       { title: 'Connexion', icon: 'assets/icon/favorite.svg', component: ConnectionPage },
       { title: 'Inscription', icon: 'assets/icon/search.svg', component: InscriptionPage },
-      { title: 'Page test', icon: '#', component: TestPage }
+      { title: 'Profile', icon: 'assets/icon/constructor.svg', component: ProfilePage }
     ];
 
   }

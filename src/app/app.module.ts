@@ -13,8 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ConnectionPageModule } from '../pages/connection/connection.module';
 import { InscriptionPageModule } from '../pages/inscription/inscription.module';
 import { ProductPageModule } from '../pages/product/product.module';
-import { AngularFireModule } from 'angularfire2';//2
-import { FIREBASE_CONFIG } from './app.firebase.config';//3.
+import { AngularFireModule } from 'angularfire2';
+import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AddProductPageModule } from '../pages/add-product/add-product.module';
@@ -25,6 +25,7 @@ import { TestPageModule } from '../pages/test/test.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ToastService } from '../services/toast/toast.service';
 import { ProfilUserService } from '../services/profil-user/profil-user.service';
+import { EditProfilePageModule } from '../pages/edit-profile/edit-profile.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProfilUserService } from '../services/profil-user/profil-user.service';
     ConnectionPageModule,
     EditProductPageModule,
     ProfilePageModule,
+    EditProfilePageModule,
     TestPageModule
   ],
   bootstrap: [IonicApp],

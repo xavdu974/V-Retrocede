@@ -5,6 +5,7 @@ import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { ToastService } from '../../services/toast/toast.service';
+import { ProfilUserService } from '../../services/profil-user/profil-user.service';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,7 @@ export class ConnectionPage {
 
   user = {} as User;
   
-  constructor(private afAuth : AngularFireAuth, private toast: ToastService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth : AngularFireAuth, private toast: ToastService, public navCtrl: NavController, public navParams: NavParams, public currentUser: ProfilUserService) {
     this.eMail = this.navParams.get('monMail');
   }
 

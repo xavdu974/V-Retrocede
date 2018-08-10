@@ -7,27 +7,39 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button [navPush]="editProfilePage">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-    <ion-item>
-      <ion-label stacked>Nom</ion-label>
-      <ion-input [(ngModel)]="profile.lastName" value="{{(profileData | async)?.lastName}}"></ion-input>
-    </ion-item>
+  <img src="assets/imgs/society/Triverio.png" alt="Society" class="societyLogo">
 
-    <ion-item>
-      <ion-label stacked>Prénom</ion-label>
-      <ion-input [(ngModel)]="profile.firstName" value="{{(profileData | async)?.firstName}}"></ion-input>
-    </ion-item>
+    <ion-card class="profileInfo">
+      <ion-card-content >
+        <h1>
+          {{(profile | async)?.lastName}} {{(profile | async)?.firstName}}
+        </h1>
+        <h2>
+          {{(profile | async)?.societyName}}
+        </h2>
+        <h2>
+          {{(profile | async)?.phoneNumber}}
+        </h2>
+        <h2>
+          {{userInfo.email}}
+        </h2>
+      </ion-card-content>
+    </ion-card>
 
-    <ion-item>
-      <ion-label stacked>Numéro de téléphone</ion-label>
-      <ion-input [(ngModel)]="profile.phoneNumber" value="{{(profileData | async)?.phoneNumber}}"></ion-input>
-    </ion-item>
-  
-  <button ion-button clear block (click)="createProfile()">Valider</button>
+
 </ion-content>
+
