@@ -39,9 +39,9 @@ export class ProductPage {
   }
 
   ionViewDidLoad() {
-    //Récupération de l'image
+    console.log(this.product.key);
     var img = document.getElementById('currentImage')as HTMLImageElement;
-    storage().ref(this.product.key).child("img1").getDownloadURL().then(function(url){
+    storage().ref("product/" + this.product.key).child("img1").getDownloadURL().then(function(url){
       img.src = url;
     }).catch(function(error){
       img.src = "https://www.vinci-construction.fr/sites/default/files/styles/1440x678/public/images/covers/sfr_retouche_05042016.jpg?itok=ICaH9mdV";
@@ -63,7 +63,7 @@ export class ProductPage {
 
       const image = `data:image/jpeg;base64,${result}`;
       
-      const pictures =  storage().ref(this.product.key).child("img1"); //Emplacement sur firebase
+      const pictures =  storage().ref("product/" + this.product.key).child("img1"); //Emplacement sur firebase
       pictures.putString(image, 'data_url');
       console.log("Mon URL : " + pictures);
 
@@ -94,6 +94,7 @@ export class ProductPage {
           text: 'Supprimer',
           handler: () => {
             this.products.remove(this.product.key);
+            storage().ref("product/" + this.product.key).child("img1").delete(); //supprime l'image associée
             this.toast.show("Annonce supprimée");
             this.navCtrl.pop();
           }
@@ -144,7 +145,7 @@ export class ProductPage {
   }
 
   photoView(){
-      this.photoViewer.show("https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/" + this.product.key + "%2Fimg1?alt=media");
+      this.photoViewer.show("https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/product%2F" + this.product.key + "%2Fimg1?alt=media");
   }
 
   toCall(){

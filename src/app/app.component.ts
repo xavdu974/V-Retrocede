@@ -10,6 +10,7 @@ import { InscriptionPage } from '../pages/inscription/inscription';
 import { ProfilePage } from '../pages/profile/profile'
 import { AngularFireAuth } from '../../node_modules/angularfire2/auth';
 import { auth } from '../../node_modules/firebase';
+import { ToastService } from '../services/toast/toast.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class MyApp {
   pages: Array<{title: string, icon: string , component: any}>;
   user: Array<{title: string, icon: string, component: any}>
 
-  constructor(private afAuth : AngularFireAuth, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private toast: ToastService, private afAuth : AngularFireAuth, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -55,7 +56,17 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if(page.title == "Deconnexion"){
       this.afAuth.auth.signOut();
+      this.toast.show("Vous êtes déconnecté");
     }
+
+    // A finir !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    this.afAuth.authState.map((auth) => {
+      if(auth == null){
+        console.log('Utilisateur non connecté');
+      }else{
+        console.log('Utilisateur connecté');
+      }
+  })
 
     this.nav.setRoot(page.component);
   }

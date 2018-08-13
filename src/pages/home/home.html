@@ -26,7 +26,7 @@
   <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
     <ion-card-content class="cardContent">
       <div class="polaroid">
-        <img src="https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/{{product.key}}%2Fimg1?alt=media">
+        <img src="https://firebasestorage.googleapis.com/v0/b/bdd-retro.appspot.com/o/product%2F{{product.key}}%2Fimg1?alt=media">
         <div class="labelPrice">
           <p>{{product.price}}€</p>
         </div>
