@@ -4,9 +4,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Annonces</ion-title>
+    <ion-title *ngIf="!isSearchbarOpened">
+      Annonces
+    </ion-title>
+    <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionCancel)="isSearchbarOpened=false" (ionInput)="search($event)" placeholder="Recherche ..."></ion-searchbar>
     <ion-buttons end>
-      <button ion-button [navPush]="editProfilePage">
+      <button ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
@@ -22,7 +25,13 @@
       refreshingText="Actualisation">
     </ion-refresher-content>
   </ion-refresher>
-  <h4>Dernières annonces :</h4>
+
+  <div *ngIf="isSearchbarOpened">
+    <h5 *ngIf="(productsList | async)?.length>1">{{(productsList | async)?.length}} résultats :</h5>
+    <h5 *ngIf="(productsList | async)?.length==1">1 résultat :</h5>
+    <h5 *ngIf="(productsList | async)?.length==0">Aucun résultat</h5>
+  </div>
+  <h4 *ngIf="!isSearchbarOpened">Dernières annonces :</h4>
   <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
     <ion-card-content class="cardContent">
       <div class="polaroid">
@@ -35,7 +44,7 @@
         <h2 class="name">{{product.name}}</h2>
         <p class="society">{{product.society}}</p>
         <p class="location">{{product.location}}</p>
-        <p class="dateTime">28/03/2018</p>
+        <p class="dateTime">{{product.publicationDate}}</p>
       </div>
     </ion-card-content>
   </ion-card>

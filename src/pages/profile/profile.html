@@ -40,9 +40,11 @@
         <h2>
           {{userInfo.email}}
         </h2>
+        <a [navPush]="myProductsPage" *ngIf="(productsList | async)?.length>1">{{(productsList | async)?.length}} annonces</a>
+        <a [navPush]="myProductsPage" *ngIf="(productsList | async)?.length==1">1 annonce</a>
+        <p *ngIf="(productsList | async)?.length==0">Aucune annonce</p>
       </ion-card-content>
     </ion-card>
-
 
 </ion-content>
 

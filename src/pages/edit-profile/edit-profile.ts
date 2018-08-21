@@ -23,7 +23,7 @@ export class EditProfilePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    console.log('ionViewDidLoad editProfilePage');
   }
 
   createProfile(){

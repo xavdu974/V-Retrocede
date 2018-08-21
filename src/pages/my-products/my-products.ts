@@ -4,8 +4,9 @@ import { ProfilUserService } from '../../services/profil-user/profil-user.servic
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 import { ProductPage } from '../product/product';
 import { ProductsListService } from '../../services/products-list/products-list.service';
+
 /**
- * Generated class for the TestPage page.
+ * Generated class for the MyProductsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,35 +14,21 @@ import { ProductsListService } from '../../services/products-list/products-list.
 
 @IonicPage()
 @Component({
-  selector: 'page-test',
-  templateUrl: 'test.html',
+  selector: 'page-my-products',
+  templateUrl: 'my-products.html',
 })
-export class TestPage {
+export class MyProductsPage {
+
   user = this.currentUser.getUID(); //Pour obtenir l'id de l'utilisateur connecté
   profile = this.currentUser.getProfile(); //Pour obtenir les infos de l'utilisateur connecté
   productsList;
   productPage = ProductPage;
-  term;
 
-  lastKeypress: number = 0;
-
-  constructor(private currentUser: ProfilUserService, private database: AngularFireDatabase, private products: ProductsListService,
+  constructor(private currentUser: ProfilUserService, private products: ProductsListService,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    //this.productsList = this.products.getProductList().snapshotChanges(); 
-    /*this.productsList = this.database.list('product-list/',
-    ref => ref.orderByChild('uId').equalTo(this.currentUser.getUID())).snapshotChanges();*/
-
-    /*this.productsList = this.database.list('product-list/',
-    ref => ref.orderByChild('uId').equalTo(this.currentUser.getUID()))
-      .snapshotChanges().map(changes => {
-        return changes.map(c => ({
-          key: c.payload.key, ...c.payload.val(),
-      }));
-    });*/
-
     this.productsList = this.products.getFilterProductList('uId', this.user)
     .snapshotChanges()
     .map(changes => {
@@ -49,15 +36,5 @@ export class TestPage {
         key: c.payload.key, ...c.payload.val(),
       }));
     });
-  }
-
-  search($event){
-    this.productsList = this.products.getFilterProductList('name', $event.target.value)
-      .snapshotChanges()
-      .map(changes => {
-        return changes.map(c => ({
-          key: c.payload.key, ...c.payload.val(),
-        }));
-      });
   }
 }

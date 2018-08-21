@@ -6,6 +6,8 @@ export interface Product{
     location: string;
     price: number;
     nbPhoto: number;
+    uId: string;
+    publicationDate;
     imgUrl: string[];
 }
 

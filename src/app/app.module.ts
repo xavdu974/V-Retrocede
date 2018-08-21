@@ -26,6 +26,7 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
 import { ToastService } from '../services/toast/toast.service';
 import { ProfilUserService } from '../services/profil-user/profil-user.service';
 import { EditProfilePageModule } from '../pages/edit-profile/edit-profile.module';
+import { MyProductsPageModule } from '../pages/my-products/my-products.module';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { EditProfilePageModule } from '../pages/edit-profile/edit-profile.module
     EditProductPageModule,
     ProfilePageModule,
     EditProfilePageModule,
+    MyProductsPageModule,
     TestPageModule
   ],
   bootstrap: [IonicApp],
@@ -64,7 +66,7 @@ import { EditProfilePageModule } from '../pages/edit-profile/edit-profile.module
     PhotoViewer,
     CallNumber,
     ToastService,
-    ProfilUserService
+    ProfilUserService,
   ]
 })
 export class AppModule {}

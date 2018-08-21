@@ -39,7 +39,7 @@ export class ProductPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.product.key);
+    console.log("Product key : " + this.product.key);
     var img = document.getElementById('currentImage')as HTMLImageElement;
     storage().ref("product/" + this.product.key).child("img1").getDownloadURL().then(function(url){
       img.src = url;

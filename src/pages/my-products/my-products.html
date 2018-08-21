@@ -1,5 +1,5 @@
 <!--
-  Generated template for the TestPage page.
+  Generated template for the MyProductsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,16 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ user }}</ion-title>
+    <ion-title>Mes annonces</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <p>
-    Rechercher : <input type="text" [(ngModel)]="term" (keyup)="search($event)" placeholder="nom de produit" id="input">
-  </p>
   <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
       <ion-card-content class="cardContent">
         <div class="polaroid">
@@ -33,4 +30,7 @@
         </div>
       </ion-card-content>
     </ion-card>
+    <ion-fab right bottom class="addButton">
+      <button ion-fab color="vprimary" navPush="AddProductPage"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 </ion-content>

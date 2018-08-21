@@ -1,4 +1,4 @@
-page-test {
+page-my-products {
     .polaroid{
         position:relative;
         margin-bottom: 25px;
@@ -64,5 +64,9 @@ page-test {
 
     .descriptif p{
         line-height:1.5rem;
+    }
+        
+    .addButton{
+        margin:30px;
     }
 }

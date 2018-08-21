@@ -4,6 +4,7 @@ import { Product } from '../../models/product.model';
 import { ProductsListService } from '../../services/products-list/products-list.service';
 import { HomePage } from '../home/home';
 import { ToastService } from '../../services/toast/toast.service';
+import { ProfilUserService } from '../../services/profil-user/profil-user.service';
 
 @IonicPage()
 @Component({
@@ -18,12 +19,15 @@ export class AddProductPage {
     location:undefined,
     price: undefined,
     nbPhoto: 0,
+    uId:this.currentUser.getUID(),
+    publicationDate: null,
     imgUrl:[],
   }
 
   homePage = HomePage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toast: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private toast: ToastService, private currentUser: ProfilUserService) {
+    this.product.publicationDate = new Date();
   }
 
   ionViewDidLoad() {

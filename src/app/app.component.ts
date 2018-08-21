@@ -9,7 +9,6 @@ import { ConnectionPage } from '../pages/connection/connection';
 import { InscriptionPage } from '../pages/inscription/inscription';
 import { ProfilePage } from '../pages/profile/profile'
 import { AngularFireAuth } from '../../node_modules/angularfire2/auth';
-import { auth } from '../../node_modules/firebase';
 import { ToastService } from '../services/toast/toast.service';
 
 
