@@ -25,7 +25,7 @@
 
     <ion-card class="profileInfo">
       <ion-card-header>
-        <img src="assets/imgs/society/Triverio.png" alt="Society" class="societyLogo">
+        <img src="assets/imgs/society/{{(profile | async)?.societyName}}.png" alt="Society" class="societyLogo">
       </ion-card-header>
       <ion-card-content >
         <h1 class="Name">

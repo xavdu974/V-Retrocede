@@ -5,6 +5,8 @@ import { ProductsListService } from '../../services/products-list/products-list.
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../models/product.model';
 import { TestPage } from '../test/test';
+import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
+import { ProfilUserService } from '../../services/profil-user/profil-user.service';
 
 @Component({
   selector: 'page-home',
@@ -16,14 +18,23 @@ export class HomePage {
   productPage = ProductPage;
   mesProduits: string[]; 
   productsList: Observable<Product[]>;
+  productsList2: Observable<Product[]>;
   isSearchbarOpened = false;
   lastKeypress: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService){
+  constructor(public navCtrl: NavController, public navParams: NavParams, private products: ProductsListService, private afAuth: AngularFireAuth, private currentUser: ProfilUserService){
   }
   
   ionViewDidLoad() {
     this.initializeItems();
+    
+    if(this.currentUser.authenticated() == false){
+      console.log(this.currentUser.authenticated())
+    };
+    /*let online: boolean;
+    this.afAuth.authState.subscribe((auth) => {
+      console.log(auth);
+    })*/
   }
 
   initializeItems(){
@@ -60,6 +71,7 @@ export class HomePage {
         this.initializeItems();
       }
     }
+    
     this.lastKeypress = $event.timeStamp
   }
 }

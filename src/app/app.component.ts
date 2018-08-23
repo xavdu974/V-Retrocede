@@ -48,6 +48,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
   }
 
   openPage(page) {
@@ -59,13 +60,14 @@ export class MyApp {
     }
 
     // A finir !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    this.afAuth.authState.map((auth) => {
+    
+    /*this.afAuth.authState.map((auth) => {
       if(auth == null){
         console.log('Utilisateur non connecté');
       }else{
         console.log('Utilisateur connecté');
       }
-  })
+  })*/
 
     this.nav.setRoot(page.component);
   }

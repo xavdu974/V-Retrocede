@@ -30,8 +30,15 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Société</ion-label>
-      <ion-input [(ngModel)]="profile.societyName" value="{{(profileData | async)?.societyName}}"></ion-input>
+      <ion-label>Société</ion-label>
+      <ion-select interface="popover" [(ngModel)]="profile.societyName">
+        <ion-option value="Campenon Bernard TP CA">Campenon Bernard TP CA</ion-option>
+        <ion-option value="Dumez CA">Dumez CA</ion-option>
+        <ion-option value="Sogea CA">Sogea CA</ion-option>
+        <ion-option value="Triverio Construction">Triverio Construction</ion-option>
+        <ion-option value="Vinci Construction France">Vinci Construction France</ion-option>
+        <ion-option value="Vinci Construction Monaco">Vinci Construction Monaco</ion-option>
+      </ion-select>
     </ion-item>
   
   <button ion-button clear block (click)="createProfile()">Valider</button>

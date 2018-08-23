@@ -7,9 +7,10 @@ page-profile {
     .societyLogo{
         z-index:1 !important;
         position:absolute;
-        width:100px;
+        width:auto;
+        max-width:250px;
         margin: auto;
-        top: 22%;
+        margin-top: -20%;
         right: 0;
         left: 0;
     }
