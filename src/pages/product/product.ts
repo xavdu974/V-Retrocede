@@ -12,6 +12,8 @@ import { CallNumber } from '@ionic-native/call-number'
 import { ToastService } from '../../services/toast/toast.service';
 import { ProfilUserService } from '../../services/profil-user/profil-user.service';
 import { Observable } from '../../../node_modules/rxjs/Observable';
+import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
+import { ProductsListService } from '../../services/products-list/products-list.service';
 
 //import { FIREBASE_CONFIG } from '../../app/app.firebase.config'
 
@@ -37,7 +39,7 @@ export class ProductPage {
   product: Product = this.navParams.get('product');
   profile = this.currentUser.getProfileByUid(this.product.uId);
 
-  constructor(private currentUser: ProfilUserService, private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast: ToastService, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer, private callNumber: CallNumber) {
+  constructor(private productsList: ProductsListService, private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth, private currentUser: ProfilUserService, private camera: Camera , public navCtrl: NavController, public navParams: NavParams, private toast: ToastService, private database: AngularFireDatabase, public platform: Platform, public actionsheetCtrl: ActionSheetController, public alertCtrl: AlertController, private photoViewer: PhotoViewer, private callNumber: CallNumber) {
     this.products = this.database.list('product-list');
   }
 
@@ -177,6 +179,6 @@ export class ProductPage {
   }
 
   toSave(){
-    this.toast.show("Sauvegarde non disponible !");
+    console.log(this.productsList.isFavoriteProduct(this.product.key))
   }
 }

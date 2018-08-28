@@ -3,4 +3,5 @@ export interface Profile {
     firstName: string;
     phoneNumber: string;
     societyName: string;
+    favorites: Array<string>;
 }
