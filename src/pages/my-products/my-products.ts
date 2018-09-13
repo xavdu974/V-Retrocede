@@ -4,6 +4,7 @@ import { ProfilUserService } from '../../services/profil-user/profil-user.servic
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 import { ProductPage } from '../product/product';
 import { ProductsListService } from '../../services/products-list/products-list.service';
+import { List } from 'lodash';
 
 /**
  * Generated class for the MyProductsPage page.
@@ -23,12 +24,19 @@ export class MyProductsPage {
   profile = this.currentUser.getProfile(); //Pour obtenir les infos de l'utilisateur connecté
   productsList;
   productPage = ProductPage;
+  myList = [];
+  isNotFavorites: boolean;
 
   constructor(private currentUser: ProfilUserService, private products: ProductsListService,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
+    this.toMyProducts();
+  }
+
+  toMyProducts(){
+    this.isNotFavorites = true;
     this.productsList = this.products.getFilterProductList('uId', this.user)
     .snapshotChanges()
     .map(changes => {
@@ -36,5 +44,19 @@ export class MyProductsPage {
         key: c.payload.key, ...c.payload.val(),
       }));
     });
+  }
+
+  toFavorites(){
+    this.isNotFavorites = false;
+    this.myList;
+    this.productsList = this.products.getFavorites()
+    .snapshotChanges()
+    .map(changes => {
+      return changes.map(c => ({
+        c: this.myList.push(c.payload.val()),
+        key: c.payload.key, ...c.payload.val(),
+      }));
+    });
+    this.myList;
   }
 }

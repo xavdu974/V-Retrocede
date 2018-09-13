@@ -16,7 +16,6 @@ export class EditProfilePage {
   uID = this.currentUser.getUID(); 
   profileData = this.currentUser.getProfile();
   profile = {} as Profile;
-  test;
 
   constructor(private toast: ToastService , private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,private currentUser: ProfilUserService,
     public navCtrl: NavController, public navParams: NavParams) { 

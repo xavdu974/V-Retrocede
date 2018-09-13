@@ -53,6 +53,10 @@ export class ProductsListService {
         this.toast.show("Supprimé de la liste des favoris");
     }
 
+    getFavorites(){
+        return this.db.list<any>(`profile/${this.user}/favorites`)
+    }
+
     getProducts(start, end): AngularFireList<any> {
         return this.db.list('/profile', ref =>
             ref.startAt(start).endAt(end),

@@ -7,13 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Mes annonces</ion-title>
+    <ion-title *ngIf="isNotFavorites">Mes annonces</ion-title>
+    <ion-title *ngIf="!isNotFavorites">Mes favoris</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-card class="card" *ngFor="let element of myList" detail-push [navPush]="productPage" [navParams]="{product: product}">
+      <ion-card-content>{{element}}</ion-card-content>
+    </ion-card>
   <ion-card class="card" *ngFor="let product of productsList | async" detail-push [navPush]="productPage" [navParams]="{product: product}">
       <ion-card-content class="cardContent">
         <div class="polaroid">
@@ -30,7 +34,17 @@
         </div>
       </ion-card-content>
     </ion-card>
-    <ion-fab right bottom class="addButton">
+    <ion-fab right bottom class="addButton" *ngIf="isNotFavorites">
       <button ion-fab color="vprimary" navPush="AddProductPage"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 </ion-content>
+<ion-footer>
+  <ion-segment color="vlight" class="bottomBar">
+      <ion-segment-button role="button" (click)="toMyProducts()">
+        <ion-icon name="copy"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button role="button" >
+        <ion-icon name="bookmark" (click)="toFavorites()"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+</ion-footer>
